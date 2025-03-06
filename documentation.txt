@@ -1,0 +1,138 @@
+DOCUMENTACION DEL PROYECTO
+Generado: 2025-03-05 19:54:37
+
+1. INFORMACION GENERAL
+--------------------
+Nombre del proyecto: modulo_WebGenesis
+Ubicacion: C:\Users\pepec\Projects\Desarrollo_Modular\modulo_WebGenesis
+Version de Python: 3.9
+
+2. ESTRUCTURA DEL PROYECTO
+------------------------
+Directorio raiz: modulo_WebGenesis/
+├── src/
+├── config/
+├── tests/
+├── docs/
+
+3. DESCRIPCION Y JUSTIFICACION DE LA ESTRUCTURA
+-------------------------------------------
+La estructura del proyecto sigue un diseno modular que facilita el mantenimiento,
+la escalabilidad y la organizacion del codigo:
+
+src/
+  - Contiene el codigo fuente principal del proyecto
+  - Separa la logica de negocio de otros componentes
+  - Facilita la importacion y reutilizacion de modulos
+
+config/
+  - Centraliza todas las configuraciones del proyecto
+  - Permite cambiar parametros sin modificar el codigo fuente
+  - Facilita la gestion de diferentes entornos (desarrollo, produccion)
+
+tests/
+  - Mantiene organizadas todas las pruebas del proyecto
+  - Permite validar la funcionalidad del codigo
+  - Facilita la integracion continua y el desarrollo guiado por pruebas
+
+docs/
+  - Centraliza toda la documentacion del proyecto
+  - Mejora la mantenibilidad y comprension del codigo
+  - Facilita la incorporacion de nuevos desarrolladores
+
+4. DESCRIPCION DE ARCHIVOS PRINCIPALES
+----------------------------------
+README.md - Punto de entrada para entender el proyecto
+environment.yml - Asegura la reproducibilidad del entorno
+src/__init__.py - Define el modulo principal
+src/main.py - Punto de entrada de la aplicacion
+config/settings.py - Gestion centralizada de configuraciones
+tests/test_integration.py - Validacion del funcionamiento
+
+5. ENTORNO VIRTUAL CONDA
+----------------------
+Nombre del entorno: modulo_WebGenesis
+Version de Python: 3.9
+Dependencias base:
+- python=3.9
+- pip
+
+6. PROCESO DE CONFIGURACION
+-------------------------
+1. Solicitud de parametros iniciales
+2. Creacion de estructura de directorios
+3. Generacion de archivos base
+4. Configuracion del entorno Conda
+5. Generacion de documentacion
+
+7. HERRAMIENTAS DE CALIDAD DE CÓDIGO
+--------------------------------
+El proyecto incluye configuración para las siguientes herramientas:
+
+- Black: Formateador de código (pyproject.toml)
+  • Mantiene un estilo consistente
+  • Longitud máxima de línea: 88 caracteres
+  • Se ejecuta automáticamente al guardar
+
+- Flake8: Linter de código (.flake8)
+  • Verifica el cumplimiento de PEP 8
+  • Detecta errores comunes
+  • Configurado para trabajar con Black
+
+- Pre-commit: Hooks de Git
+  • Verifica el formato antes de commits
+  • Asegura calidad consistente
+
+Para activar estas herramientas:
+1. El entorno virtual ya incluye las dependencias necesarias
+2. Ejecute: pre-commit install (una vez)
+3. Configure su editor para ejecutar Black al guardar
+
+8. INTEGRACIÓN CONTINUA (CI)
+--------------------------
+El proyecto incluye un pipeline de CI configurado con GitHub Actions:
+
+- Eventos que activan el pipeline:
+  • Push a la rama main
+  • Pull Requests a main
+
+- Pasos del pipeline:
+  • Instalación de dependencias
+  • Verificación de formato con Black
+  • Análisis de código con Flake8
+  • Verificación de imports con isort
+  • Ejecución de pruebas con pytest
+
+- Ubicación: .github/workflows/ci.yml
+
+Para comenzar a usar CI:
+1. Suba el proyecto a GitHub
+2. Las acciones se ejecutarán automáticamente
+3. Revise los resultados en la pestaña Actions
+
+9. INSTRUCCIONES DE USO DEL SCRIPT SETUP
+-------------------------------------
+Para configurar un nuevo proyecto:
+
+1. Ejecute setup_proyecto.py
+2. Siga las instrucciones en pantalla
+3. El script configurará automáticamente:
+   - La estructura de directorios
+   - El entorno Conda
+   - Git y pre-commit hooks
+   - Herramientas de calidad de código
+   - Pipeline de CI
+
+10. DIRECTORIOS ADICIONALES
+-------------------------
+public_html/
+  - Contiene los archivos públicos del sitio web
+  - Punto de entrada para el servidor web
+
+themes/
+  - Almacena temas y plantillas del sitio
+  - Facilita la personalización visual
+
+plugins/
+  - Contiene extensiones y módulos adicionales
+  - Permite ampliar la funcionalidad base

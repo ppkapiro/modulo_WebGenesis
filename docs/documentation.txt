@@ -1,0 +1,109 @@
+DOCUMENTACIÓN DEL PROYECTO
+Última actualización: 2025-03-06 18:46:56
+
+1. INFORMACIÓN GENERAL
+--------------------
+Nombre del proyecto: modulo_WebGenesis
+Ubicación: C:\Users\pepec\Projects\Desarrollo_Modular\modulo_WebGenesis
+Versión de Python: 3.9
+Fecha de generación: 2025-03-06 18:46:56
+
+2. ESTRUCTURA DEL PROYECTO
+------------------------
+├── .vscode/
+    └── Directorio del proyecto
+├── config/
+    └── Archivos de configuración y variables de entorno
+├── docs/
+    └── Documentación del proyecto
+├── src/
+    └── Código fuente principal y módulos del proyecto
+├── src\config/
+    └── Directorio del proyecto
+├── src\utils/
+    └── Directorio del proyecto
+├── src\utils\__pycache__/
+    └── Directorio del proyecto
+├── src\wordpress/
+    └── Directorio del proyecto
+├── src\wordpress\__pycache__/
+    └── Directorio del proyecto
+├── tests/
+    └── Pruebas unitarias y de integración
+├── __pycache__/
+    └── Directorio del proyecto
+
+3. DESCRIPCIÓN DE MÓDULOS
+-------------------------
+src/
+  - utils/: Utilidades y herramientas del proyecto
+    • command_runner.py: Ejecutor seguro de comandos externos
+    • documentation.py: Generador de documentación
+    • env_manager.py: Gestor de entornos virtuales
+    • ui_helper.py: Interfaz de usuario y formateo
+    • preferences.py: Gestión de preferencias de usuario
+
+config/
+  - settings.yaml: Configuración principal del proyecto
+  - .env: Variables de entorno (no versionado)
+
+tests/
+  - Pruebas unitarias y de integración
+  - Configuración de pytest
+
+4. CONFIGURACIÓN DE HERRAMIENTAS
+------------------------------
+Git:
+  - Repositorio inicializado
+  - .gitignore configurado para Python
+  - Pre-commit hooks instalados
+
+Conda:
+  - Entorno virtual específico del proyecto
+  - environment.yml con dependencias
+
+Herramientas de calidad:
+  - Black: Formato de código
+  - Flake8: Linting
+  - isort: Ordenamiento de imports
+  - pytest: Testing
+
+CI/CD (GitHub Actions):
+  - Pruebas automáticas
+  - Verificación de formato
+  - Análisis de código
+
+5. GESTIÓN DE VARIABLES DE ENTORNO
+--------------------------------
+.env:
+  - Configuración sensible
+  - No versionado en Git
+  - Template disponible en .env.example
+
+Variables requeridas:
+  - DEBUG: Modo de depuración
+  - SECRET_KEY: Clave secreta
+  - DATABASE_URL: Conexión a base de datos
+
+6. INSTRUCCIONES DE USO
+----------------------
+1. Activar entorno virtual:
+   conda activate modulo_WebGenesis_env
+
+2. Instalar dependencias:
+   conda env update -f environment.yml
+
+3. Configurar pre-commit:
+   pre-commit install
+
+4. Variables de entorno:
+   cp .env.example .env
+   [Editar .env con valores reales]
+
+5. Ejecutar pruebas:
+   pytest
+
+6. Desarrollo:
+   - Usar VS Code con la configuración proporcionada
+   - Black formateará automáticamente el código
+   - Los commits serán validados por pre-commit

@@ -1,0 +1,36 @@
+defaults:
+  project_name: "modulo_WebGenesis"
+  python_version: "3.9"
+  base_location: "C:\\Users\\pepec\\Projects\\Desarrollo_Modular"
+
+directories:
+  - src
+  - config
+  - tests
+  - docs
+  - public_html
+  - themes
+  - plugins
+  - .github/workflows
+
+vscode:
+  paths:
+    - "C:\\Users\\pepec\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code.cmd"
+    - "C:\\Users\\pepec\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+
+gitignore_content: |
+  # Python
+  __pycache__/
+  *.py[cod]
+  *$py.class
+  *.so
+  .env
+  .venv
+  env/
+  venv/
+  ENV/
+  .vscode/
+  *.code-workspace
+  .DS_Store
+  Thumbs.db
+  *.log
