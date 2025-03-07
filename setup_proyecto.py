@@ -281,6 +281,22 @@ def main():
                         reporte_path = wp_manager.generar_reporte()
                         if reporte_path:
                             setup.ui.print_success("WordPress configurado exitosamente")
+            
+            # Ejecutar diagnóstico completo
+            setup.ui.print_step("Ejecutando diagnóstico de WordPress")
+            success, diagnosticos = wp_manager.ejecutar_diagnostico_completo()
+            
+            if success:
+                if diagnosticos['estado'] == 'error':
+                    setup.ui.print_warning("Se encontraron problemas en la instalación")
+                    if setup.ui.confirmar_accion("¿Desea intentar corregir los problemas automáticamente?"):
+                        comandos = wp_manager.sugerir_correcciones(diagnosticos)
+                        if comandos and wp_manager.ejecutar_correcciones(comandos):
+                            setup.ui.print_success("Correcciones aplicadas exitosamente")
+                else:
+                    setup.ui.print_success("WordPress configurado y verificado correctamente")
+            
+            setup.ui.print_step("Consulte el reporte completo en wp-diagnostics.md")
 
     except Exception as e:
         setup.ui.print_error(f"Error durante la configuración: {str(e)}")

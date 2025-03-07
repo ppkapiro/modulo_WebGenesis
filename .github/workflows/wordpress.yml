@@ -1,0 +1,64 @@
+name: WordPress CI
+
+on:
+  push:
+    paths:
+      - 'wp-content/**'
+      - 'wp-config.php'
+      - 'wp-settings.php'
+
+jobs:
+  wordpress-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, mysql, zip
+      
+      - name: Install WP-CLI
+        run: |
+          curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          chmod +x wp-cli.phar
+          sudo mv wp-cli.phar /usr/local/bin/wp
+      
+      - name: Run WordPress Diagnostics
+        run: |
+          wp core verify-checksums || true
+          wp plugin verify-checksums --all || true
+          wp theme verify-checksums --all || true
+      
+      - name: Run Database Checks
+        run: |
+          wp db check || true
+          wp db optimize || true
+      
+      - name: Check Updates
+        run: |
+          wp core check-update || true
+          wp plugin update --all --dry-run || true
+          wp theme update --all --dry-run || true
+      
+      - name: Generate Diagnostic Report
+        if: always()
+        run: |
+          echo "### WordPress Diagnostic Report" > wp-diagnostic.md
+          echo "Generated on: $(date)" >> wp-diagnostic.md
+          echo "#### Core Status" >> wp-diagnostic.md
+          wp core version >> wp-diagnostic.md 2>/dev/null || echo "Core version check failed" >> wp-diagnostic.md
+          echo "#### Plugin Status" >> wp-diagnostic.md
+          wp plugin list --format=markdown >> wp-diagnostic.md 2>/dev/null || echo "Plugin check failed" >> wp-diagnostic.md
+          echo "#### Theme Status" >> wp-diagnostic.md
+          wp theme list --format=markdown >> wp-diagnostic.md 2>/dev/null || echo "Theme check failed" >> wp-diagnostic.md
+      
+      - name: Upload Diagnostic Report
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: wordpress-diagnostics
+          path: wp-diagnostic.md
